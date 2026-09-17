@@ -1,0 +1,79 @@
+[
+  {
+    "timestamp": "2026-09-16T08:30:12+09:00",
+    "user": "kim@company.com",
+    "ip": "203.0.113.17",
+    "event": "login",
+    "status": "success",
+    "role": "user",
+    "account_status": "active",
+    "resource": "web-console",
+    "action": "login"
+  },
+  {
+    "timestamp": "2026-09-16T08:31:05+09:00",
+    "user": "admin@company.com",
+    "ip": "198.51.100.42",
+    "event": "login",
+    "status": "failed",
+    "role": "admin",
+    "account_status": "active",
+    "resource": "admin-console",
+    "action": "login"
+  },
+  {
+    "timestamp": "2026-09-16T08:31:18+09:00",
+    "user": "admin@company.com",
+    "ip": "198.51.100.42",
+    "event": "login",
+    "status": "failed",
+    "role": "admin",
+    "account_status": "active",
+    "resource": "admin-console",
+    "action": "login"
+  },
+  {
+    "timestamp": "2026-09-16T08:35:44+09:00",
+    "user": "old-admin@company.com",
+    "ip": "192.0.2.88",
+    "event": "permission_check",
+    "status": "success",
+    "role": "administrator",
+    "account_status": "inactive",
+    "resource": "iam",
+    "action": "read"
+  },
+  {
+    "timestamp": "2026-09-16T08:40:10+09:00",
+    "user": "developer@company.com",
+    "ip": "203.0.113.25",
+    "event": "api_request",
+    "status": "success",
+    "role": "developer",
+    "account_status": "active",
+    "resource": "/api/orders",
+    "action": "read"
+  },
+  {
+    "timestamp": "2026-09-16T08:42:33+09:00",
+    "user": "ops@company.com",
+    "ip": "203.0.113.31",
+    "event": "cloud_change",
+    "status": "success",
+    "role": "operator",
+    "account_status": "active",
+    "resource": "aws-s3-bucket",
+    "action": "update"
+  },
+  {
+    "timestamp": "2026-09-16T08:46:51+09:00",
+    "user": "analyst@company.com",
+    "ip": "203.0.113.44",
+    "event": "data_export",
+    "status": "success",
+    "role": "analyst",
+    "account_status": "active",
+    "resource": "customer-database",
+    "action": "download"
+  }
+]

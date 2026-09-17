@@ -1,0 +1,11 @@
+timestamp,user,ip,event,status,role,account_status,resource,action
+2026-09-16T08:30:12+09:00,kim@company.com,203.0.113.17,login,success,user,active,web-console,login
+2026-09-16T08:31:05+09:00,admin@company.com,198.51.100.42,login,failed,admin,active,admin-console,login
+2026-09-16T08:31:18+09:00,admin@company.com,198.51.100.42,login,failed,admin,active,admin-console,login
+2026-09-16T08:32:02+09:00,admin@company.com,198.51.100.42,login,denied,admin,active,admin-console,login
+2026-09-16T08:35:44+09:00,old-admin@company.com,192.0.2.88,permission_check,success,administrator,inactive,iam,read
+2026-09-16T08:40:10+09:00,developer@company.com,203.0.113.25,api_request,success,developer,active,/api/orders,read
+2026-09-16T08:42:33+09:00,ops@company.com,203.0.113.31,cloud_change,success,operator,active,aws-s3-bucket,update
+2026-09-16T08:45:19+09:00,analyst@company.com,203.0.113.44,database_query,success,analyst,active,customer-database,select
+2026-09-16T08:46:51+09:00,analyst@company.com,203.0.113.44,data_export,success,analyst,active,customer-report,download
+2026-09-16T08:50:07+09:00,lee@company.com,203.0.113.52,login,success,user,active,web-console,login
