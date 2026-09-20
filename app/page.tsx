@@ -80,6 +80,21 @@ function DepartmentCharacter({character,index,state}:{character:CharacterFrames;
   return <div className={`character-position is-${state}`} style={{left:`${motion.x}%`,bottom:`${motion.y}%`,transitionDuration:`${motion.duration}s`} as CSSProperties}><img className={`department-sprite is-${state}`} src={source} alt=""/></div>;
 }
 
+function CompletionBubble({room,result}:{room:Room;result?:FileInfo}){
+  const [visible,setVisible]=useState(false);
+  useEffect(()=>{
+    if(!result||result.mode==="analyzing"){setVisible(false);return;}
+    setVisible(true);
+    const timer=window.setTimeout(()=>setVisible(false),7500);
+    return()=>window.clearTimeout(timer);
+  },[result]);
+  if(!visible||!result||result.mode==="analyzing")return null;
+  const danger=["high","critical"].includes(room.severity??"");
+  const warning=Boolean(room.problem)||room.severity==="medium";
+  const message=result.mode==="rules"?(warning?"기본 검사 완료! 확인이 필요해요.":"기본 검사 완료! 결과를 확인해요."):danger?"위험 발견! 결과를 확인해 주세요.":warning?"분석 완료! 주의할 항목이 있어요.":"분석 완료! 발견된 경고는 없어요.";
+  return <span className={`character-speech ${danger?"danger":warning?"warning":"normal"}`}>{message}</span>;
+}
+
 function RoomIcon({id}:{id:string}){
   if(id==="soc")return <ScanSearch className="reference-room-icon" aria-hidden="true"/>;
   if(id==="iam")return <BadgeCheck className="reference-room-icon" aria-hidden="true"/>;
@@ -282,6 +297,7 @@ export default function Home(){
               return <DepartmentCharacter key={character.idle} character={character} index={index} state={state}/>;
             })}</div>;
           })}</div>
+          <div className="company-speech-layer" aria-live="polite">{rooms.map(room=><div key={room.id} className={`character-room speech-room ${room.cls}`}><CompletionBubble room={room} result={room.id==="data"?sources.sql:sources.logs}/></div>)}</div>
         </div>
       </div>
       <nav className="connection-actions" aria-label="보안 자료 연결">

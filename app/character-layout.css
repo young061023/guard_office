@@ -1,5 +1,7 @@
 /* Room-local coordinates keep all four employees inside their own floor. */
 .character-room{position:absolute;width:26.1%;height:22%;overflow:hidden}
+.company-speech-layer{position:absolute;inset:0;z-index:5;pointer-events:none}
+.character-room.speech-room{overflow:visible;pointer-events:none}
 .character-room.soc{left:23.2%;top:16%}.character-room.iam{left:51%;top:16%}
 .character-room.app{left:23.2%;top:40.9%;height:19.8%}.character-room.cloud{left:51%;top:40.9%;height:19.8%}
 .character-room.data{left:23.2%;top:64.5%;height:18.8%}.character-room.incident{left:51%;top:64.5%;height:18.8%}
@@ -12,5 +14,11 @@
 @keyframes desk-work{50%{transform:translateY(2%)}}
 @keyframes surprise-hop{50%{transform:translateY(-5%)}}
 .report-character-slot.has-character{display:block;border:0;background:transparent;box-shadow:none;width:112px;height:132px;padding:0}
+.character-speech{position:absolute;z-index:4;left:8%;bottom:57%;max-width:84%;box-sizing:border-box;padding:.45cqw .6cqw;background:#fffef5;color:#263e30;border:2px solid #354d3e;border-radius:.45cqw;box-shadow:2px 3px 0 #0002;font-family:Galmuri11,sans-serif;font-size:.74cqw;line-height:1.55;text-align:center;pointer-events:none;animation:character-speech-reveal 7.5s both}
+.character-speech::after{content:"";position:absolute;left:37%;bottom:-6px;width:9px;height:9px;background:inherit;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.character-speech.warning{color:#775812;border-color:#775812;background:#fff8d9}
+.character-speech.danger{color:#963a36;border-color:#963a36;background:#fff0ec}
+@keyframes character-speech-reveal{0%{opacity:0;transform:translateY(5px) scale(.94)}5%,90%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){.character-speech{animation:none}}
 @media(max-width:1100px){.report-character-slot.has-character{position:fixed;left:8px;bottom:8px;width:80px;height:95px;z-index:25;pointer-events:none}}
 @media(prefers-reduced-motion:reduce){.character-position.is-walking,.department-sprite{animation:none!important}}
