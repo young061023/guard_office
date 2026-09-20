@@ -10,5 +10,11 @@
 .reference-home .upload-modal .drop-zone strong{font-size:22px;color:#111}
 .reference-home .upload-modal .drop-zone>span{display:none}
 .reference-home .upload-modal .drop-zone button{margin-top:36px;padding:5px 23px;border:0;background:#a6c1ed;color:#fff;font:700 21px/1.1 Galmuri11,sans-serif}
+.reference-home .sample-files{width:min(504px,100%);margin:14px auto 0;padding:12px 16px;background:#e8eef8;border:1px solid #6a82a5;color:#16263d}
+.reference-home .sample-files>strong{display:block;font:700 15px Galmuri11,sans-serif}
+.reference-home .sample-files>div{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.reference-home .sample-files button{padding:7px 10px;border:1px solid #456a9d;background:#fff;color:#173f77;font:700 13px Galmuri11,sans-serif;cursor:pointer}
+.reference-home .sample-files button:hover{background:#d9e8ff}
+.reference-home .sample-files small{display:block;margin-top:8px;color:#50637a;font:12px/1.45 Galmuri11,sans-serif}
 .reference-home .upload-modal .format-row,.reference-home .upload-modal .privacy-note{display:none}
 @media(max-width:540px){.reference-home .upload-modal h2{font-size:26px}.reference-home .upload-modal .drop-zone{min-height:290px}.reference-home .upload-modal .drop-zone strong{font-size:17px}}
