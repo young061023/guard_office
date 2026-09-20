@@ -1,0 +1,14 @@
+.reference-home .upload-modal{width:min(776px,calc(100vw - 28px));padding:52px 18px 20px;background:#f5f3e1;border:1px solid #222;border-radius:9px;box-shadow:none;overflow:hidden}
+.upload-titlebar{position:absolute;inset:0 0 auto;height:36px;padding:0 18px;display:flex;align-items:center;background:#abc4e8;border-bottom:1px solid #555;color:#111}
+.upload-titlebar strong{font:700 21px Georgia,serif}.upload-titlebar span{margin-left:auto;margin-right:19px;font:18px monospace}
+.reference-home .upload-modal>.modal-close{position:absolute;z-index:2;right:10px;top:7px;width:24px;height:24px;padding:0;background:transparent;color:#111;font:26px/1 Arial;border:0}
+.reference-home .upload-modal h2{margin:0 0 10px;font:700 34px/1.2 Galmuri11,sans-serif;color:#000}
+.reference-home .upload-modal .modal-description{margin:0;color:#909090;font-size:12px;font-weight:700}
+.reference-home .upload-modal .drop-zone{position:relative;min-height:340px;width:min(504px,100%);margin:14px auto 0;padding:48px 20px;background:white;border:1px solid #666;outline:2px solid #333;outline-offset:-20px;gap:0}
+.reference-home .upload-modal .drop-zone.dragging{background:#f0f6ff;border-color:#638bce}
+.reference-home .upload-modal .upload-symbol{width:70px;height:54px;margin:4px 0 14px;background:none;color:black;stroke-width:2}
+.reference-home .upload-modal .drop-zone strong{font-size:22px;color:#111}
+.reference-home .upload-modal .drop-zone>span{display:none}
+.reference-home .upload-modal .drop-zone button{margin-top:36px;padding:5px 23px;border:0;background:#a6c1ed;color:#fff;font:700 21px/1.1 Galmuri11,sans-serif}
+.reference-home .upload-modal .format-row,.reference-home .upload-modal .privacy-note{display:none}
+@media(max-width:540px){.reference-home .upload-modal h2{font-size:26px}.reference-home .upload-modal .drop-zone{min-height:290px}.reference-home .upload-modal .drop-zone strong{font-size:17px}}
