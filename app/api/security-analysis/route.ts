@@ -60,7 +60,8 @@ export async function POST(request: Request) {
       return Response.json({ error: "분석 데이터가 너무 큽니다. 기록 수를 줄여주세요." }, { status: 413 });
     }
 
-    let model = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+    const configuredModel = process.env.GEMINI_MODEL?.trim() || "gemini-3.5-flash";
+    let model = configuredModel==="gemini-2.5-flash" ? "gemini-3.5-flash" : configuredModel;
     const prompt = `당신은 기업 보안 운영센터의 수석 분석가입니다. 다음 ${isSql ? "SQL 데이터베이스 정의·권한·정책 파일" : "보안 자료"}를 여섯 전문팀 관점에서 동시에 분석하세요.
 
 팀 역할:
@@ -111,21 +112,29 @@ ${previousSerialized}
     });
 
     let geminiResponse = await requestModel(model);
-    if(geminiResponse.status===404 && model==="gemini-2.5-flash"){
-      model="gemini-3.6-flash";
+    // Retry transient provider failures, never authentication errors or daily quotas.
+    for(let attempt=0; attempt<3 && [500,502,503,504].includes(geminiResponse.status); attempt++){
+      await geminiResponse.body?.cancel();
+      await new Promise(resolve=>setTimeout(resolve,1500 * 2**attempt));
+      geminiResponse=await requestModel(model);
+    }
+    if([500,502,503,504].includes(geminiResponse.status) && model!=="gemini-3.1-flash-lite"){
+      await geminiResponse.body?.cancel();
+      model="gemini-3.1-flash-lite";
       geminiResponse=await requestModel(model);
     }
     if (!geminiResponse.ok) {
       const detail = await geminiResponse.text();
-      console.error("Gemini API error", geminiResponse.status, detail.slice(0, 500));
+      console.error("Gemini API error", {status:geminiResponse.status,model});
       const status=geminiResponse.status;
       const dailyQuota=status===429 && /PerDay|per day|daily/i.test(detail);
       const error=status===429
         ? dailyQuota?"Gemini 일일 사용 한도를 초과했습니다. Google AI Studio에서 할당량 초기화 또는 결제 설정을 확인해주세요.":"Gemini 요청 한도를 초과했습니다. 잠시 후 다시 분석해주세요."
         : status===401||status===403?"Gemini API 키 또는 프로젝트 접근 권한을 확인해주세요."
         : status===404?"설정한 Gemini 모델을 사용할 수 없습니다. GEMINI_MODEL 설정을 확인해주세요."
+        : status===503?"Gemini 서버 혼잡으로 재시도 후에도 분석하지 못했습니다. 잠시 후 다시 검사해주세요."
         : "Gemini 분석 요청이 실패했습니다. 잠시 후 다시 시도해주세요.";
-      return Response.json({ error }, { status: status===429?429:502 });
+      return Response.json({ error }, { status: status===429?429:status===503?503:502 });
     }
 
     const response = await geminiResponse.json() as {
