@@ -1,0 +1,30 @@
+.office-app .topbar{height:76px;padding:0 max(24px,4.2vw)}
+.office-app .brand{gap:11px}
+.office-app .brand strong{font-size:19px}
+.office-app .shield{width:34px;height:40px;font-size:18px}
+.office-app .connection{padding:8px 12px;font-size:11px}
+.office-app .avatar{width:38px;height:38px}
+.security-workspace .building-wrap{margin:0;border-color:#203b2c}
+.security-workspace .building-toolbar{height:60px;padding:0 20px}
+.security-workspace .building img{width:100%;max-width:none;max-height:610px;min-height:420px}
+.security-workspace .work-panel{min-height:100px}
+.office-app>footer{max-width:1500px;margin:0 auto;padding:0 max(24px,4.2vw) 30px}
+
+@media(max-width:800px){
+  .office-app .topbar{height:66px;padding:0 18px}
+  .office-app .brand strong{font-size:16px}
+  .office-app .shield{width:30px;height:36px}
+  .security-workspace .building{overflow:hidden}
+  .security-workspace .building img{width:100%;height:auto;min-height:390px;object-fit:cover}
+  .security-workspace .room-label{display:block}
+  .office-app>footer{padding:0 18px 28px}
+}
+
+@media(max-width:560px){
+  .security-workspace .building img{height:auto;min-height:310px}
+  .security-workspace .work-panel{padding:14px}
+  .security-workspace .case-count{display:none}
+  .security-workspace .enter{width:100%;margin:2px 0 0}
+  .office-app>footer{display:block;margin-top:0;text-align:left}
+  .office-app>footer p{width:auto;margin:10px 0}
+}
