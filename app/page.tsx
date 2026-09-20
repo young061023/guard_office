@@ -65,15 +65,16 @@ function DepartmentCharacter({character,index,state}:{character:CharacterFrames;
     let timer:ReturnType<typeof setTimeout>;
     const move=()=>{
       if(stopped)return;
-      const duration=1.8+Math.random()*2.6;
+      // Keep the office scene calm: movement should read as a stroll, not a dash.
+      const duration=4.5+Math.random()*3;
       setMotion(previous=>({...previous,x:4+Math.random()*72,y:2+Math.random()*7,moving:true,duration}));
       timer=setTimeout(()=>{
         setMotion(previous=>({...previous,moving:false}));
-        timer=setTimeout(move,600+Math.random()*2400);
+        timer=setTimeout(move,2200+Math.random()*2800);
       },duration*1000);
     };
     timer=setTimeout(move,Math.random()*1200);
-    const steps=setInterval(()=>setMotion(previous=>previous.moving?{...previous,frame:1-previous.frame}:previous),300);
+    const steps=setInterval(()=>setMotion(previous=>previous.moving?{...previous,frame:1-previous.frame}:previous),550);
     return()=>{stopped=true;clearTimeout(timer);clearInterval(steps);};
   },[state,index]);
   const source=state==="alert"?character.surprised:state==="walking"&&motion.moving?(motion.frame?character.walkLeft:character.walkRight):character.idle;
